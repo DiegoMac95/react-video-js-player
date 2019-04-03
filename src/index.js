@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Controls from './Controls.json'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
+import 'videojs-youtube'
 
 class VideoPlayer extends Component {
   playerId = `video-player-${new Date() * 1}`
@@ -29,7 +30,8 @@ class VideoPlayer extends Component {
       document.querySelector(`#${this.playerId}`),
       playerOptions
     )
-    this.player.src(props.src)
+    //this.player.src(props.src)
+    console.log('QUEEEEEEEEEEE')
     this.player.poster(props.poster)
     this.set_controls_visibility(this.player, props.hideControls)
   }
@@ -68,9 +70,11 @@ class VideoPlayer extends Component {
     })
     this.player.on('play', () => {
       props.onPlay(this.player)
+      window.player = this.player
     })
     this.player.on('pause', () => {
       props.onPause(this.player)
+      window.player = this.player
     })
     this.player.on('timeupdate', e => {
       props.onTimeUpdate(this.player)
@@ -103,6 +107,7 @@ class VideoPlayer extends Component {
         className={`video-js ${
           this.props.bigPlayButtonCentered ? 'vjs-big-play-centered' : ''
         } ${this.props.className}`}
+        data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}], "youtube": { "ytControls": 2 } }'
       />
     )
   }
