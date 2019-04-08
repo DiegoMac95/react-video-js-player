@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import Controls from './Controls.json'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
-import 'videojs-youtube'
 
 class VideoPlayer extends Component {
   playerId = `video-player-${new Date() * 1}`
   player = {}
   componentDidMount() {
-    console.log('AAAAAAAAAAAAAHHHHHHHHHHHH video player')
     this.init_player(this.props)
     this.init_player_events(this.props)
   }
@@ -68,12 +66,13 @@ class VideoPlayer extends Component {
     let position = 0
 
     this.player.ready(() => {
-      props.onReady(this.player)
+      props.onReady('kk')
       window.player = this.player
     })
     this.player.on('play', () => {
       props.onPlay(this.player)
       window.player = this.player
+      console.log('AAAAHHHHH VIDEO')
     })
     this.player.on('pause', () => {
       props.onPause(this.player)
