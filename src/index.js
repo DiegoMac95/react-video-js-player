@@ -9,6 +9,7 @@ class VideoPlayer extends Component {
   playerId = `video-player-${new Date() * 1}`
   player = {}
   componentDidMount() {
+    console.log('AAAAAAAAAAAAAHHHHHHHHHHHH video player')
     this.init_player(this.props)
     this.init_player_events(this.props)
   }
@@ -31,7 +32,9 @@ class VideoPlayer extends Component {
       playerOptions
     )
     //this.player.src(props.src)
-    console.log('QUEEEEEEEEEEE')
+
+    console.log('AAAAAAAAAAAAAHHHHHHHHHHHH video player')
+
     this.player.poster(props.poster)
     this.set_controls_visibility(this.player, props.hideControls)
   }
